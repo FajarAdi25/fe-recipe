@@ -1,0 +1,84 @@
+/* detail */
+.detail {
+  margin: 0 auto;
+  margin-top: 180px;
+  max-width: 1000px;
+}
+
+.detail .icon {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.detail .icon .icon-item:hover {
+  cursor: pointer;
+}
+
+.detail img {
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.detail .btn {
+  width: 100%;
+  max-width: 200px;
+}
+
+.comment {
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.comment .form-comment textarea {
+  background-color: #F6F5F4;
+  border: none;
+}
+
+.comment .btn {
+  width: 100%;
+  max-width: 200px;
+}
+
+.comment .list-comment img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .detail {
+    margin-top: 140px;
+  }
+
+  .detail img {
+    height: 400px;
+  }
+
+  .detail .icon {
+    bottom: 20px;
+    right: 40px;
+  }
+}
+
+@media (min-width: 992px) {
+  .detail img {
+    height: 500px;
+  }
+
+  .detail .icon {
+    bottom: 20px;
+    right: 120px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .detail .icon {
+    bottom: 20px;
+    right: 140px;
+  }
+}
