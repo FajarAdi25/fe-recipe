@@ -6,6 +6,11 @@ const recipeCalls = {
     return response;
   },
 
+  getAllRecipeDB: async () => {
+    const response = await axiosClient.get(`/recipe`);
+    return response;
+  },
+
   addRecipeDB: async (data) => {
     const response = await axiosClient.post("/recipe",data);
     return response;

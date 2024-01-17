@@ -17,6 +17,22 @@ export const getRecipeByUserId = () => async (dispatch) => {
     throw error.response;
   }
 }
+export const getAllRecipe = () => async (dispatch) => {
+  try {
+    dispatch({
+      type: "GET_ALL_RECIPES_REQUEST",
+    });
+    const response = await recipeCalls.getAllRecipeDB()
+    const recipe = response.data.data;
+    dispatch({
+      type: "GET_ALL_RECIPES_SUCCESS",
+      payload: recipe
+    })
+  } catch (error) {
+    dispatch({ type: "GET_ALL_RECIPES_FAILED", payload: error.response.data.message });
+    throw error.response;
+  }
+}
 
 export const addRecipe = ({ data, saveImage, saveVideo }) => async (dispatch) => {
   try {

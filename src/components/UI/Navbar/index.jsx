@@ -1,108 +1,147 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "../../../styles/navbar.css";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import FloatingLogo from "../FloatingLogo";
+import { PersonCircle } from "react-bootstrap-icons";
 
 const NavbarLogin = () => {
+  const [isLogin, setIsLogin] = useState(false);
+  const [transparent, setTransparent] = useState(true);
+  const location = useLocation();
+  const navigate = useNavigate();
+
   useEffect(() => {
-    // Scroll Handler
-    const scrollFunction = () => {
-      const navbarToggler = document.querySelector(".navbar-toggler");
-      const navbarTogglerStatus = navbarToggler.classList.contains("collapsed");
+    const token = localStorage.getItem("token");
 
-      if (navbarTogglerStatus) {
-        if (document.documentElement.scrollTop > 100) {
-          changeNavbarBg();
-        } else {
-          changeNavbarTransparent();
-        }
-      }
-    };
+    if (token) {
+      setIsLogin(true);
+    }
+  }, []);
+ 
 
-    // Click Handler
-    const handleNavbarToggle = () => {
-      const navbarToggler = document.querySelector(".navbar-toggler");
-      const navbarTogglerStatus = navbarToggler.classList.contains("collapsed");
+  const changeNavBg = () => {
+    const navbarTogglerStatus = document
+      .querySelector(".navbar-toggler")
+      .classList.contains("collapsed");
 
-      if (navbarTogglerStatus) {
-        if (document.documentElement.scrollTop > 100) {
-          // Handle the case when the button is clicked and scrollTop > 100
-        } else {
-          changeNavbarTransparent();
-        }
+    if (navbarTogglerStatus) {
+      if (document.documentElement.scrollTop > 100) {
+        setTransparent(false);
       } else {
-        changeNavbarBg();
+        setTransparent(true);
       }
-    };
+    }
+  };
 
-    const changeNavbarBg = () => {
-      document.getElementById("navbar").classList.remove("bg-transparent");
-      document.getElementById("navbar").classList.add("bg-white");
-      document.getElementById("navbar").classList.add("nav-shadow");
-      document.querySelector(".nav-login").classList.add("color-blue");
-    };
+  const changeNavBgClick = () => {
+    const navbarTogglerStatus = document
+      .querySelector(".navbar-toggler")
+      .classList.contains("collapsed");
 
-    const changeNavbarTransparent = () => {
-      document.getElementById("navbar").classList.remove("bg-white");
-      document.getElementById("navbar").classList.remove("nav-shadow");
-      document.getElementById("navbar").classList.add("bg-transparent");
-      document.querySelector(".nav-login").classList.remove("color-blue");
-    };
+    if (navbarTogglerStatus) {
+      if (document.documentElement.scrollTop > 100) {
+        console.log("");
+      } else {
+        setTransparent(true);
+      }
+    } else {
+      setTransparent(false);
+    }
+  };
 
-    // Attach scroll event listener
-    window.addEventListener("scroll", scrollFunction);
+  useEffect(() => {
+    window.addEventListener("scroll", changeNavBg);
 
-    // Attach click event listener for navbar-toggler
-    const navbarToggler = document.querySelector(".navbar-toggler");
-    navbarToggler.addEventListener("click", handleNavbarToggle);
-
-    // Cleanup event listeners on component unmount
     return () => {
-      window.removeEventListener("scroll", scrollFunction);
-      navbarToggler.removeEventListener("click", handleNavbarToggle);
+      window.removeEventListener("scroll", changeNavBg);
     };
-  }, []); // Empty dependency array to ensure the effect runs only once on mount
+  }, []);
 
+  const submitLogout = () => {
+    localStorage.clear();
+    return navigate("/login");
+  };
   return (
     <nav
-      className="navbar fixed-top navbar-expand-md navbar-light bg-transparent py-2 py-md-4 ff-airbnb"
+      className={`navbar fixed-top navbar-expand-md navbar-light py-2 py-md-4 ff-airbnb ${
+        transparent ? "bg-transparent" : "bg-white nav-shadow"
+      }`}
       id="navbar"
     >
-      <div className="container">
+      <div className="container mt-1">
+        <Link to="/" className="navbar-brand d-md-none">
+          <FloatingLogo />
+        </Link>
         <button
           className="navbar-toggler collapsed bg-light"
           type="button"
+          onClick={changeNavBgClick}
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
           aria-controls="navbarNav"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav me-auto">
             <li className="nav-item me-5">
-              <a className="nav-link" href="/index.html">
-                <span className="active">Home</span>
-              </a>
+              <Link to="/home" className="nav-link">
+                <span
+                  className={`${location.pathname === "/home" && "active"}`}
+                >
+                  Home
+                </span>
+              </Link>
             </li>
-            <li className="nav-item me-5">
-              <a className="nav-link" href="/add.html">
-                <span>Add Recipe</span>
-              </a>
-            </li>
-            <li className="nav-item me-5">
-              <a className="nav-link" href="/profile.html">
-                <span>Profile</span>
-              </a>
-            </li>
+            {isLogin && (
+              <>
+                <li className="nav-item me-5">
+                  <Link to="/add" className="nav-link">
+                    <span
+                      className={`${location.pathname === "/add" && "active"}`}
+                    >
+                      Add Recipe
+                    </span>
+                  </Link>
+                </li>
+                <li className="nav-item me-5">
+                  <Link to="/profile" className="nav-link">
+                    <span
+                      className={`${
+                        location.pathname === "/profile" && "active"
+                      } && "active"}`}
+                    >
+                      Profile
+                    </span>
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
           <div className="right-menu d-flex align-items-center">
             <div className="icon bg-light p-2 rounded-circle border">
-              <i className="far fa-user"></i>
+              <PersonCircle />
             </div>
-            <a className="nav-login ms-2 text-white" href="/login.html">
-              Login
-            </a>
+            {isLogin ? (
+              <button
+                onClick={submitLogout}
+                type="button"
+                className="btn nav-login color-blue btn-none"
+              >
+                Logout
+              </button>
+            ) : (
+              <Link
+                to="/auth"
+                className={`nav-login ms-2 ${
+                  transparent ? "text-white" : "color-blue"
+                }`}
+              >
+                Login
+              </Link>
+            )}
           </div>
         </div>
       </div>

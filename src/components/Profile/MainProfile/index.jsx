@@ -23,13 +23,13 @@ const MainProfile = () => {
             <div className="position-relative">
               <img
                 className="picture rounded-circle"
-                src={user.image}
+                src={user?.image}
                 alt="Profile Picture"
               />
               <ModalEditProfile />
             </div>
           </div>
-          <p className="fs-5 mt-3">{user.username}</p>
+          <p className="fs-5 mt-3">{user?.username}</p>
         </>
       )}
     </section>
