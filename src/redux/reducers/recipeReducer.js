@@ -46,11 +46,11 @@ const recipeReducer = (state = initialState, action) => {
         loading: false,
         error: action.payload,
       };
-    // case "ADD_RECIPES_REQUEST":
-    //   return {
-    //     ...state,
-    //     loading: true,
-    //   };
+    case "ADD_RECIPES_REQUEST":
+      return {
+        ...state,
+        loading: true,
+      };
 
     case "ADD_RECIPES_SUCCESS":
       return {

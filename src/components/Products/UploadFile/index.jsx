@@ -55,6 +55,8 @@ const UploadFile = () => {
    } catch (error) {
     alert(error.data.message);
    }
+
+
   }
   return (
     <form action="">

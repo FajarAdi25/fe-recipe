@@ -5,19 +5,11 @@ import FloatingLogo from "../FloatingLogo";
 import { PersonCircle } from "react-bootstrap-icons";
 
 const NavbarLogin = () => {
-  const [isLogin, setIsLogin] = useState(false);
   const [transparent, setTransparent] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    if (token) {
-      setIsLogin(true);
-    }
-  }, []);
- 
+  const isLogin = Boolean(localStorage.getItem("token"));
 
   const changeNavBg = () => {
     const navbarTogglerStatus = document
@@ -134,7 +126,7 @@ const NavbarLogin = () => {
               </button>
             ) : (
               <Link
-                to="/auth"
+                to="/login"
                 className={`nav-login ms-2 ${
                   transparent ? "text-white" : "color-blue"
                 }`}

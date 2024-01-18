@@ -10,6 +10,7 @@ import AddRecipe from "./pages/main/Products/AddRecipe";
 // import DetailProduct from "./components/Products/DetailProduct";
 import DetailRecipe from "./pages/main/Products/DetailRecipe";
 import DetailVideoRecipe from "./pages/main/Products/DetailVideo";
+import PrivateRoute from "./components/PrivateRoute";
 // import Main from "./pages/index";
 
 const App = () => {
@@ -17,14 +18,23 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         {/* <Route index element={ />}/> */}
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Main />}>
-          <Route path="home" element={<Home />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="add" element={<AddRecipe />} />
-          <Route path="detailRecipe/:id" element={<DetailRecipe/>}/>
-          <Route path="detailVideo/:id" element={<DetailVideoRecipe/>}/>
+        {/* public */}
+        <Route>
+          <Route index element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Main />}>
+            <Route path="home" element={<Home />} />
+            <Route path="detailRecipe/:id" element={<DetailRecipe />} />
+            <Route path="detailVideo/:id" element={<DetailVideoRecipe />} />
+          </Route>
+        </Route>
+        {/* private */}
+        <Route element={<PrivateRoute />}>
+          <Route path="/" element={<Main />}>
+            <Route path="profile" element={<Profile />} />
+            <Route path="add" element={<AddRecipe />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>

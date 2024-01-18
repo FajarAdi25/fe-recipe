@@ -36,9 +36,10 @@ export const getAllRecipe = () => async (dispatch) => {
 
 export const addRecipe = ({ data, saveImage, saveVideo }) => async (dispatch) => {
   try {
-    // dispatch({
-    //   type: "ADD_RECIPE_REQUEST"
-    // });
+   
+    dispatch({
+      type: "ADD_RECIPE_REQUEST"
+    });
     const userId = localStorage.getItem("id")
     const formData = new FormData();
     formData.append("title", data.title);
@@ -92,7 +93,7 @@ export const getDetailRecipe = (id) => async (dispatch) => {
 
     const response = await recipeCalls.getRecipeByIdDB(id)
     const recipe = response.data.data
-    console.log(recipe)
+    // console.log(recipe)
     dispatch({
       type: "GET_RECIPE_DETAIL_SUCCESS",
       payload: recipe
