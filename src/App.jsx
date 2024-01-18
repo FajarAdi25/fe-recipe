@@ -4,14 +4,11 @@ import Login from "./pages/auth/Login";
 import Home from "./pages/main/Home";
 import Main from "./pages/main";
 import Profile from "./pages/main/Profile";
-// import Card from "./components/UI/Card";
-// import RegisterForm from "./components/Auth/RegisterForm";
 import AddRecipe from "./pages/main/Products/AddRecipe";
-// import DetailProduct from "./components/Products/DetailProduct";
 import DetailRecipe from "./pages/main/Products/DetailRecipe";
 import DetailVideoRecipe from "./pages/main/Products/DetailVideo";
 import PrivateRoute from "./components/PrivateRoute";
-// import Main from "./pages/index";
+import SearchPage from "./pages/main/Search";
 
 const App = () => {
   return (
@@ -27,6 +24,7 @@ const App = () => {
             <Route path="home" element={<Home />} />
             <Route path="detailRecipe/:id" element={<DetailRecipe />} />
             <Route path="detailVideo/:id" element={<DetailVideoRecipe />} />
+            <Route path="search" element={<SearchPage/>}/>
           </Route>
         </Route>
         {/* private */}

@@ -64,7 +64,7 @@ export const addRecipe = ({ data, saveImage, saveVideo }) => async (dispatch) =>
 export const editRecipe = ({ recipeId, data, saveImage, saveVideo }) => async (dispatch) => {
   try {
      dispatch({
-      type: "ADD_RECIPE_REQUEST"
+      type: "EDIT_RECIPE_REQUEST"
     });
     const id = recipeId
     const formData = new FormData();
@@ -107,7 +107,7 @@ export const getDetailRecipe = (id) => async (dispatch) => {
 export const deleteRecipe = (id) => async (dispatch) => {
   try {
     dispatch({
-      type: "DETAIL_RECIPE_REQUEST"
+      type: "DELETE_RECIPE_REQUEST"
     })
 
     await recipeCalls.deleteRecipeDB(id)
