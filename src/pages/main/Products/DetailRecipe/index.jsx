@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import "../../../../styles/detail.css";
+import commentPhoto from "../../../../assets/img/ayudia.png";
 import { useNavigate, useParams } from "react-router-dom";
 import { getDetailRecipe } from "../../../../redux/actions/recipeAction";
 import { useEffect } from "react";
@@ -67,6 +68,34 @@ const DetailRecipe = () => {
           >
             <Play />
           </i>
+        </div>
+      </section>
+      <section id="comment" style={{ marginTop: "7vw", marginLeft: "10vw" }}>
+        <div className="">
+          <textarea
+            className="rounded-2 p-sm-3 ps-2 fs-6"
+            placeholder="Comment: "
+            defaultValue={""}
+          />
+          <button
+            id="btn-send"
+            style={{ width: "21vw", marginLeft: "22vw", marginTop: "1vw" }}
+            className="btn btn-warning text-light"
+          >
+            Send
+          </button>
+        </div>
+        <div id="userComment" style={{ marginTop: "4vw" }}>
+          <h3>Comment</h3>
+          <div className="d-flex" style={{ marginTop: "2.5vw" }}>
+            <img src={commentPhoto} alt="avatar-ayudia" />
+            <div className="text-capitalize" style={{ marginLeft: "2vw" }}>
+              <p>Ayudia</p>
+              <p className="fw-light">
+                Nice recipe. simple and delicious, thankyou
+              </p>
+            </div>
+          </div>
         </div>
       </section>
     </div>
