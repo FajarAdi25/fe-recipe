@@ -5,39 +5,33 @@ import Button from "../../UI/Button";
 import Input from "../../UI/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { editRecipe } from "../../../redux/actions/recipeAction";
+import PropTypes from "prop-types";
 
-const ModalEditProduct = ({recipeId, data}) => {
+const ModalEditProduct = ({ recipeId }) => {
   const dispatch = useDispatch();
-  const id = recipeId
+  // const navigate = useNavigate();
 
   const [show, setShow] = useState(false);
   const [saveImage, setSaveImage] = useState("");
-  const [saveVideo, setSaveVideo] = useState("");
   const { loading, recipeList } = useSelector((state) => state.recipe);
-  let [form, setForm] = useState({
+  let [data, setData] = useState({
     title: "",
     image: saveImage,
-    video: saveVideo,
-    videoName: "",
     ingredients: "",
   });
-
   useEffect(() => {
-    setForm({
+    setData({
       title: recipeList.title,
       image: recipeList,
-      video: recipeList,
-      videoName: recipeList.videoName,
       ingredients: recipeList.ingredients,
     });
-  },[recipeList, saveImage, saveVideo]);
+  }, [recipeList, saveImage]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
   const handleChange = (e) => {
-    setForm({
-      ...form,
+    setData({
+      ...data,
       [e.target.name]: e.target.value,
     });
   };
@@ -46,19 +40,19 @@ const ModalEditProduct = ({recipeId, data}) => {
     const uploader = e.target.files[0];
     setSaveImage(uploader);
   };
-  const handleUploadVideo = (e) => {
-    const uploader = e.target.files[0];
-    setSaveVideo(uploader);
-  };
 
   const handleSubmit = async () => {
     try {
-      dispatch(editRecipe({
-        recipeId: id,
-        data,
-        saveImage,
-        saveVideo
-      }))
+      dispatch(
+        editRecipe({
+          recipeId: recipeId,
+          data,
+          saveImage,
+        })
+      );
+      window.location.reload();
+      handleClose();
+      return alert("update recipe berhasil");
     } catch (error) {
       alert(error.data.message);
     }
@@ -91,7 +85,7 @@ const ModalEditProduct = ({recipeId, data}) => {
             placeholder="Title"
             className="form-control form-control-sm my-3"
             name="title"
-            value={form.title}
+            value={data.title}
             onChange={handleChange}
           />
           <Input
@@ -99,23 +93,8 @@ const ModalEditProduct = ({recipeId, data}) => {
             placeholder="Ingredients"
             className="form-control form-control-sm my-3"
             name="ingredients"
-            value={form.ingredients}
+            value={data.ingredients}
             onChange={handleChange}
-          />
-          <Input
-            type="text"
-            placeholder="Video Name"
-            className="form-control form-control-sm my-3"
-            name="videoName"
-            value={form.videoName}
-            onChange={handleChange}
-          />
-          <Input
-            componentClassName="custom-file"
-            type="file"
-            className="custom-file-input"
-            onChange={handleUploadVideo}
-            name="video"
           />
         </Modal.Body>
         <Modal.Footer>
@@ -140,6 +119,10 @@ const ModalEditProduct = ({recipeId, data}) => {
       </Modal>
     </div>
   );
+};
+
+ModalEditProduct.propTypes = {
+  recipeId: PropTypes.any,
 };
 
 export default ModalEditProduct;

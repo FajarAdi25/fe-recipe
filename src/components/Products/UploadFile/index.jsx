@@ -7,36 +7,35 @@ import { addRecipe } from "../../../redux/actions/recipeAction";
 import ReactPlayer from "react-player";
 
 const UploadFile = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.recipe);
 
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const {loading} = useSelector((state) => state.recipe)
-
-  const [saveImage,setSaveImage] = useState("")
-  const [showImage,setShowImage] = useState("")
-  const [saveVideo,setSaveVideo] = useState("")
-  const [showVideo,setShowVideo] = useState("")
+  const [saveImage, setSaveImage] = useState("");
+  const [showImage, setShowImage] = useState("");
+  const [saveVideo, setSaveVideo] = useState("");
+  const [showVideo, setShowVideo] = useState("");
   const [data, setData] = useState({
-    title:"",
-    videoName:"",
-    ingredients:"",
-});
+    title: "",
+    videoName: "",
+    ingredients: "",
+  });
   const handleChange = (e) => {
     setData({
-       ...data,
-       [e.target.name]: e.target.value,
-     });
-     // console.log(data)
-   };
-  const handleImageUpload =(e) => {
+      ...data,
+      [e.target.name]: e.target.value,
+    });
+    // console.log(data)
+  };
+  const handleImageUpload = (e) => {
     const uploader = e.target.files[0];
-    const reader  = new FileReader();
-    reader.onload = () =>{
+    const reader = new FileReader();
+    reader.onload = () => {
       setShowImage(reader.result);
-    }
-    reader.readAsDataURL(uploader)
+    };
+    reader.readAsDataURL(uploader);
     setSaveImage(e.target.files[0]);
-  }
+  };
   const handleVideoUpload = (e) => {
     const videoFile = e.target.files[0];
     const reader = new FileReader();
@@ -48,16 +47,14 @@ const UploadFile = () => {
   };
 
   const handleSubmit = async () => {
-   try {
-    dispatch(addRecipe({data, saveImage, saveVideo}))
-    navigate("/profile")
-    return alert("add recipe berhasil")
-   } catch (error) {
-    alert(error.data.message);
-   }
-
-
-  }
+    try {
+      dispatch(addRecipe({ data, saveImage, saveVideo }));
+      navigate("/profile");
+      return alert("add recipe berhasil");
+    } catch (error) {
+      alert(error.data.message);
+    }
+  };
   return (
     <form action="">
       <div className="photo mb-3">
@@ -81,12 +78,12 @@ const UploadFile = () => {
       </div>
       <div className="mb-3">
         <input
-        name="title"
-        type="text"
-        className="form-control form-control-sm p-3"
-        placeholder="Title"
-        onChange={handleChange}
-        value={data.title}
+          name="title"
+          type="text"
+          className="form-control form-control-sm p-3"
+          placeholder="Title"
+          onChange={handleChange}
+          value={data.title}
         />
       </div>
       <div className="mb-3">
@@ -102,12 +99,12 @@ const UploadFile = () => {
       </div>
       <div className="mb-3">
         <input
-         type="text"
-         className="form-control form-control-sm p-3"
-         name="videoName"
-         placeholder="Video Name"
-         onChange={handleChange}
-         value={data.videoName}
+          type="text"
+          className="form-control form-control-sm p-3"
+          name="videoName"
+          placeholder="Video Name"
+          onChange={handleChange}
+          value={data.videoName}
         />
       </div>
       <div className="photo mb-3">
@@ -119,7 +116,13 @@ const UploadFile = () => {
           // value={data.video}
         />
         {showVideo && (
-          <ReactPlayer url={showVideo} controls width="40%" height="40%" style={{ objectFit: "fill",position:"absolute" }} />
+          <ReactPlayer
+            url={showVideo}
+            controls
+            width="40%"
+            height="40%"
+            style={{ objectFit: "fill", position: "absolute" }}
+          />
         )}
         <CameraVideo />
         <p className="mt-2">Add Video</p>
@@ -130,7 +133,7 @@ const UploadFile = () => {
           className="back-primary w-100 text-light"
           onClick={handleSubmit}
         >
-         {loading ?  <div className="text-light spinner-border" />: "Post"}
+          {loading ? <div className="text-light spinner-border" /> : "Post"}
         </Button>
       </div>
     </form>

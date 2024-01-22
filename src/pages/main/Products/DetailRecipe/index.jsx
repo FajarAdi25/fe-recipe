@@ -52,8 +52,10 @@ const DetailRecipe = () => {
         )}
         <div className="ingredients mb-4">
           <h1 className="fs-2 mb-3">Ingredients</h1>
+        </div>
 
-          <div className="desk">{recipeList.ingredients}</div>
+        <div className="desk">
+          <ul>{recipeList.ingredients}</ul>
         </div>
         <div className="video-step">
           <h1 className="fs-2 mb-3">Video Step</h1>

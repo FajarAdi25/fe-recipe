@@ -25,8 +25,8 @@ const recipeReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.payload,
-      }
-      
+      };
+
     case "GET_ALL_RECIPES_REQUEST":
       return {
         ...state,
@@ -46,27 +46,27 @@ const recipeReducer = (state = initialState, action) => {
         loading: false,
         error: action.payload,
       };
-    case "ADD_RECIPES_REQUEST":
+    case "ADD_RECIPE_REQUEST":
       return {
         ...state,
         loading: true,
       };
 
-    case "ADD_RECIPES_SUCCESS":
+    case "ADD_RECIPE_SUCCESS":
       return {
         ...state,
         loading: false,
         recipeList: [...state.recipeList, action.payload],
       };
 
-    case "ADD_RECIPES_FAILED":
+    case "ADD_RECIPE_FAILED":
       return {
         ...state,
         loading: false,
         error: action.payload,
       };
 
-    case "EDIT_RECIPES_REQUEST":
+    case "EDIT_RECIPE_REQUEST":
       return {
         ...state,
         loading: true,
@@ -86,7 +86,7 @@ const recipeReducer = (state = initialState, action) => {
         error: action.payload,
       };
 
-      case "DELETE_RECIPES_REQUEST":
+    case "DELETE_RECIPE_REQUEST":
       return {
         ...state,
         loading: true,
@@ -100,7 +100,7 @@ const recipeReducer = (state = initialState, action) => {
         ),
       };
 
-    case "DELETE_RECIPES_FAILED":
+    case "DELETE_RECIPE_FAILED":
       return {
         ...state,
         loading: false,

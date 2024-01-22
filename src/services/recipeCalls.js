@@ -6,30 +6,30 @@ const recipeCalls = {
     return response;
   },
 
-  getAllRecipeDB: async () => {
-    const response = await axiosClient.get(`/recipe`);
+  getAllRecipeDB: async (data) => {
+    const response = await axiosClient.get(`/recipe`, data);
     return response;
   },
 
   addRecipeDB: async (data) => {
-    const response = await axiosClient.post("/recipe",data);
+    const response = await axiosClient.post("/recipe", data);
     return response;
   },
 
   getRecipeByIdDB: async (id) => {
-    const response = await axiosClient.get(`/recipe/${id}`)
-    return response
+    const response = await axiosClient.get(`/recipe/${id}`);
+    return response;
   },
 
   editRecipeDB: async (id, data) => {
-    const response = await axiosClient.put(`/recipe/${id}`, data)
-    return response
+    const response = await axiosClient.put(`/recipe/${id}`, data);
+    return response;
   },
 
   deleteRecipeDB: async (id) => {
-    const response = await axiosClient.delete(`/recipe/${id}`)
-    return response
-  }
+    const response = await axiosClient.delete(`/recipe/${id}`);
+    return response;
+  },
 };
 
 export default recipeCalls;

@@ -1,0 +1,46 @@
+.recipe-card .card {
+  position: relative;
+  border: none;
+}
+
+.recipe-card .title {
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  font-size: 21px;
+}
+.recipe-card img {
+  object-fit: cover;
+  border-radius: 12px;
+  height: 250px;
+}
+
+.mb-10 {
+  margin-bottom: 80px !important;
+}
+
+/* Media query */
+/* smartphone */
+@media (min-width: 768px) {
+  /* recipe-card */
+  .recipe-card img {
+    height: 225px;
+  }
+}
+
+/* tablet */
+@media (min-width: 960px) {
+  /* recipe-card */
+  .recipe-card img {
+    height: 300px;
+  }
+}
+
+/* laptop */
+@media (min-width: 1200px) {
+}
+
+/* recipe-card */
+.recipe-card img {
+  height: 350px;
+}

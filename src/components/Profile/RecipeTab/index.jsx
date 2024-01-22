@@ -10,9 +10,11 @@ const savedRecipe = 0;
 
 const RecipeTab = ({ openTab, setOpenTab }) => {
   const dispatch = useDispatch();
+  // const [dataRecipes, setDataRecipes] = useState([]);
 
   const { recipeList } = useSelector((state) => state.recipe);
   useEffect(() => {
+    // const {recipeList} = dataRecipes
     dispatch(getRecipeByUserId());
   }, []);
 
@@ -74,8 +76,8 @@ const RecipeTab = ({ openTab, setOpenTab }) => {
           className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-2 gx-4 mt-2"
         >
           {savedRecipe.length ? (
-            savedRecipe.map((recipe, index) => (
-              <CardRecipe key={index} recipe={recipe} />
+            savedRecipe.map((item, index) => (
+              <CardRecipe key={index} data={item} />
             ))
           ) : (
             <p>No Recipe</p>
@@ -89,7 +91,7 @@ const RecipeTab = ({ openTab, setOpenTab }) => {
         >
           {likedRecipe.length ? (
             likedRecipe.map((item, index) => (
-              <CardRecipe key={index} item={item} />
+              <CardRecipe key={index} data={item} />
             ))
           ) : (
             <p>No Recipe</p>

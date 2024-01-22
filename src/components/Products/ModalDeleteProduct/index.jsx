@@ -9,7 +9,6 @@ import PropTypes from "prop-types";
 const ModalDeleteProduct = ({ recipeId }) => {
   const id = recipeId;
   const dispatch = useDispatch();
-
   const [show, setShow] = useState(false);
   const { loading } = useSelector((state) => state.recipe);
 

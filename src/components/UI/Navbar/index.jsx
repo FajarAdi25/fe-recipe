@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "../../../styles/navbar.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import FloatingLogo from "../FloatingLogo";
-import { PersonCircle } from "react-bootstrap-icons";
 
 const NavbarLogin = () => {
   const [transparent, setTransparent] = useState(true);
@@ -113,9 +112,6 @@ const NavbarLogin = () => {
             )}
           </ul>
           <div className="right-menu d-flex align-items-center">
-            <div className="icon bg-light p-2 rounded-circle border">
-              <PersonCircle />
-            </div>
             {isLogin ? (
               <button
                 onClick={submitLogout}

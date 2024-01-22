@@ -25,7 +25,7 @@ const ModalEditProfile = () => {
       phone: user.phone,
       image: user,
     });
-  },[user, saveImage]);
+  }, [user, saveImage]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -44,8 +44,8 @@ const ModalEditProfile = () => {
 
   const handleSubmit = async () => {
     try {
-      dispatch(editUser({data, saveImage}))
-      handleClose()
+      dispatch(editUser({ data, saveImage }));
+      handleClose();
     } catch (error) {
       alert(error.data.message);
     }

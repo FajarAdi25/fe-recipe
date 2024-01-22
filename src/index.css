@@ -10,17 +10,16 @@
   font-display: swap;
 }
 
-
 .color-primary {
-  color: #EFC81A !important;
+  color: #efc81a !important;
 }
 
 .color-blue {
-  color: #2E266F !important;
+  color: #2e266f !important;
 }
 
 .back-primary {
-  background-color: #EFC81A !important;
+  background-color: #efc81a !important;
 }
 
 .ff-inter {
@@ -31,9 +30,15 @@
   font-family: "Airbnb", sans-serif;
 }
 
-input[type="text"]:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="password"]:focus, input[type="search"]:focus, textarea.form-control:focus {
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+select.form-select:focus,
+textarea.form-control:focus {
   box-shadow: 0 0 0 0.25rem #efc81a;
-  border-color: #EFC81A;
+  border-color: #efc81a;
 }
 
 input[type="checkbox"]:hover {
@@ -44,4 +49,3 @@ input[type="checkbox"]:checked {
   background-color: #efc81a;
   border: none;
 }
-
