@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import "../../../../styles/detail.css";
-import commentPhoto from "../../../../assets/img/ayudia.png";
 import { useNavigate, useParams } from "react-router-dom";
 import { getDetailRecipe } from "../../../../redux/actions/recipeAction";
 import { useEffect } from "react";
 import { Bookmark, Heart, Play } from "react-bootstrap-icons";
+import Images from "../../../../components/UI/Images";
 const DetailRecipe = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -70,29 +70,48 @@ const DetailRecipe = () => {
           </i>
         </div>
       </section>
-      <section id="comment" style={{ marginTop: "7vw", marginLeft: "10vw" }}>
-        <div className="">
-          <textarea
-            className="rounded-2 p-sm-3 ps-2 fs-6"
-            placeholder="Comment: "
-            defaultValue={""}
-          />
-          <button
-            id="btn-send"
-            style={{ width: "21vw", marginLeft: "22vw", marginTop: "1vw" }}
-            className="btn btn-warning text-light"
-          >
-            Send
-          </button>
+      <section className="comment ff-airbnb mb-10">
+        <div className="form-comment mb-4">
+          <form>
+            <div className="mb-3">
+              <textarea
+                className="form-control px-3 py-4"
+                placeholder="Comment"
+                id="comment"
+                rows="10"
+              ></textarea>
+            </div>
+            <div className="d-flex justify-content-center">
+              <button
+                type="submit"
+                className="btn back-primary w-100 text-light mb-2"
+              >
+                Send
+              </button>
+            </div>
+          </form>
         </div>
-        <div id="userComment" style={{ marginTop: "4vw" }}>
-          <h3>Comment</h3>
-          <div className="d-flex" style={{ marginTop: "2.5vw" }}>
-            <img src={commentPhoto} alt="avatar-ayudia" />
-            <div className="text-capitalize" style={{ marginLeft: "2vw" }}>
-              <p>Ayudia</p>
-              <p className="fw-light">
-                Nice recipe. simple and delicious, thankyou
+        <div className="list-comment">
+          <h1 className="fs-2 mb-3">Comment</h1>
+          <div className="row">
+            <div className="col-3 col-sm-2 col-lg-1 d-flex justify-content-center">
+              <a href="/profile.html">
+                <img
+                  src={Images.photoProfile}
+                  className="rounded-circle"
+                  alt="Photo Profile"
+                />
+              </a>
+            </div>
+            <div className="col-9 col-sm-10 col-lg-11 d-flex flex-column justify-content-center">
+              <a
+                href="/profile.html"
+                className="m-0 text-decoration-none text-dark"
+              >
+                <strong>Andin</strong>
+              </a>
+              <p className="m-0 text-break">
+                Nice recipe. simple and delicious, thankyou.
               </p>
             </div>
           </div>
