@@ -19,10 +19,10 @@ The Mama Recipe project is built using the following technologies:
 ## Project Repository 📂
 
 The Back End repository for this project can be found on GitHub at the following link:
-[Mama Recipe Backend Repository]()
+[Mama Recipe Backend Repository](https://github.com/FajarAdi25/be-recipe-prisma)
 
 The Mobile App repository for this project can be found on GitHub at the following link:
-[Mama Recipe Mobile App Repository]()
+[Mama Recipe Mobile App Repository](https://github.com/FajarAdi25/MamaRecipeMobile)
 
 
 ## Features ✨
@@ -45,56 +45,56 @@ The Mobile App repository for this project can be found on GitHub at the followi
       <td>Profile Page</td>
    </tr>
    <tr>
-    <td><img width="350px" src="./screenshot/Profile.PNG" border="0" alt="Profile Page" /></td>
-    <td><img width="350px" src="./screenshot/Home.PNG" border="0" alt="Home Page" /></td>
+    <td><img width="350px" src="./screenshot/home.PNG" border="0" alt="" /></td>
+    <td><img width="350px" src="./screenshot/profile.PNG" border="0" alt="" /></td>
   </tr>
     <tr>
      <td>Search Page</td>
      <td>Search Mode</td>  
    </tr>
    <tr>
-    <td> <img width="350px" src="./screenshot/Search.PNG" border="0"  alt="" /></td>
-    <td> <img width="350px" src="./screenshot/SearchMode.PNG" border="0"  alt="" /></td>
+    <td> <img width="350px" src="./screenshot/searchPage.PNG" border="0"  alt="" /></td>
+    <td> <img width="350px" src="./screenshot/searchOn.PNG" border="0"  alt="" /></td>
   </tr>
     <tr>
       <td>Login Page</td>
       <td>Register Page</td>
    </tr>
    <tr>
-    <td><img width="350px" src="./screenshot/Login.jpeg" border="0" alt="Login" /></td>
-    <td> <img width="350px" src="./screenshot/Register.jpeg" border="0"  alt="Register" /></td>
+    <td><img width="350px" src="./screenshot/login.PNG" border="0" alt="Login" /></td>
+    <td> <img width="350px" src="./screenshot/register.PNG" border="0"  alt="Register" /></td>
   </tr>
     <tr>
-      <td>Profile Page</td>
+      <td>Add Recipe Page</td>
       <td>Edit Profile Page</td>
    </tr>
    <tr>
-    <td><img width="350px" src="./screenshot/Profile.PNG" border="0" alt="Profile Page" /></td>
-    <td> <img width="350px" src="./screenshot/Edit.PNG" border="0"  alt="Add Recipe Page" /></td>
+    <td><img width="350px" src="./screenshot/addRecipe.PNG" border="0" alt="Profile Page" /></td>
+    <td> <img width="350px" src="./screenshot/editProfile.PNG" border="0"  alt="Add Recipe Page" /></td>
   </tr>
-    <tr>
+<!--     <tr>
       <td>Liked Page</td>
       <td>Saved Page</td>
    </tr>
    <tr>
     <td><img width="350px" src="./screenshot/LikedRecipe.PNG" border="0" alt="" /></td>
     <td> <img width="350px" src="./screenshot/SavedRecipe.PNG" border="0"  alt="" /></td>
-  </tr>
+  </tr> -->
     <tr>
       <td>Detail Recipe Page</td>
       <td>Detail Video Page</td>
    </tr>
    <tr>
-    <td><img width="350px" src="./screenshot/DetailRecipe.PNG" border="0" alt="" /></td>
-    <td> <img width="350px" src="./screenshot/DetailVideo.PNG" border="0"  alt="" /></td>
+    <td><img width="350px" src="./screenshot/detailRecipe.PNG" border="0" alt="" /></td>
+    <td> <img width="350px" src="./screenshot/detailVideo.PNG" border="0"  alt="" /></td>
   </tr>
     <tr>
       <td>Popular Page</td>
       <td>Comment Page</td>
    </tr>
    <tr>
-    <td><img width="350px" src="./screenshot/PopularRecipe.PNG" border="0" alt="" /></td>
-    <td> <img width="350px" src="./screenshot/Detail.PNG" border="0"  alt="" /></td>
+    <td><img width="350px" src="./screenshot/popularRecipe.PNG" border="0" alt="" /></td>
+    <td> <img width="350px" src="./screenshot/comment.PNG" border="0"  alt="" /></td>
   </tr>
 </table>
 
