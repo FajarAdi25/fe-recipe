@@ -5,6 +5,7 @@ import Input from "../../UI/Input";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../../redux/actions/userAction";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 const LoginForm = () => {
   const { loading } = useSelector((state) => state.user);
@@ -16,13 +17,21 @@ const LoginForm = () => {
     password: "",
   });
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     try {
       dispatch(login(form));
+      Swal.fire({
+        title: "Success",
+        text: "Login Success",
+        icon: "success",
+      });
       navigate("/home");
-      return alert("login berhasil");
     } catch (error) {
-      alert(error.data.message);
+      Swal.fire({
+        title: "Failed",
+        text: "Login Failed",
+        icon: "error",
+      });
     }
   };
   return (

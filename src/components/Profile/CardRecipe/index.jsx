@@ -5,7 +5,6 @@ import ModalDeleteProduct from "../../Products/ModalDeleteProduct";
 
 const CardRecipe = ({ withActionButton, data, ...props }) => {
   const navigate = useNavigate();
-
   const handleRecipeClick = (id) => {
     if (!localStorage.getItem("token")) {
       navigate("/login");
@@ -26,7 +25,7 @@ const CardRecipe = ({ withActionButton, data, ...props }) => {
               />
               <p className="title back-primary text-dark">{data.title}</p>
               <div className="action">
-                <ModalEditProduct recipeId={data.id} />
+                <ModalEditProduct recipeData={data} />
                 <ModalDeleteProduct recipeId={data.id} />
               </div>
             </div>

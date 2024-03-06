@@ -18,6 +18,7 @@ const RecipeTab = ({ openTab, setOpenTab }) => {
     dispatch(getRecipeByUserId());
   }, []);
 
+  // dispatch(getRecipeByUserId());
   return (
     <div>
       <ul className="nav nav-tabs">

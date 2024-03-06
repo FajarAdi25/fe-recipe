@@ -76,7 +76,7 @@ const recipeReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        recipeList: [...state.recipeList, action.payload],
+        recipe: action.payload,
       };
 
     case "EDIT_RECIPES_FAILED":

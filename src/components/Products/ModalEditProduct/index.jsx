@@ -4,16 +4,20 @@ import { Pencil } from "react-bootstrap-icons";
 import Button from "../../UI/Button";
 import Input from "../../UI/Input";
 import { useDispatch, useSelector } from "react-redux";
-import { editRecipe } from "../../../redux/actions/recipeAction";
+import {
+  editRecipe,
+  getRecipeByUserId,
+} from "../../../redux/actions/recipeAction";
 import PropTypes from "prop-types";
+import Swal from "sweetalert2";
 
-const ModalEditProduct = ({ recipeId }) => {
+const ModalEditProduct = ({ recipeData }) => {
   const dispatch = useDispatch();
   // const navigate = useNavigate();
 
   const [show, setShow] = useState(false);
   const [saveImage, setSaveImage] = useState("");
-  const { loading, recipeList } = useSelector((state) => state.recipe);
+  const { loading } = useSelector((state) => state.recipe);
   let [data, setData] = useState({
     title: "",
     image: saveImage,
@@ -21,11 +25,11 @@ const ModalEditProduct = ({ recipeId }) => {
   });
   useEffect(() => {
     setData({
-      title: recipeList.title,
-      image: recipeList,
-      ingredients: recipeList.ingredients,
+      title: recipeData.title,
+      image: recipeData,
+      ingredients: recipeData.ingredients,
     });
-  }, [recipeList, saveImage]);
+  }, []);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -43,18 +47,26 @@ const ModalEditProduct = ({ recipeId }) => {
 
   const handleSubmit = async () => {
     try {
-      dispatch(
+      await dispatch(
         editRecipe({
-          recipeId: recipeId,
+          recipeId: recipeData.id,
           data,
           saveImage,
         })
       );
-      window.location.reload();
+      Swal.fire({
+        title: "Success",
+        text: "Update Recipe Success",
+        icon: "success",
+      });
       handleClose();
-      return alert("update recipe berhasil");
+      dispatch(getRecipeByUserId());
     } catch (error) {
-      alert(error.data.message);
+      Swal.fire({
+        title: "Failed",
+        text: "Update Recipe Failed",
+        icon: "failed",
+      });
     }
   };
   return (
@@ -122,7 +134,7 @@ const ModalEditProduct = ({ recipeId }) => {
 };
 
 ModalEditProduct.propTypes = {
-  recipeId: PropTypes.any,
+  recipeData: PropTypes.any,
 };
 
 export default ModalEditProduct;

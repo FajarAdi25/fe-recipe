@@ -3,8 +3,12 @@ import Button from "../../UI/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addRecipe } from "../../../redux/actions/recipeAction";
+import {
+  addRecipe,
+  getRecipeByUserId,
+} from "../../../redux/actions/recipeAction";
 import ReactPlayer from "react-player";
+import Swal from "sweetalert2";
 
 const UploadFile = () => {
   const navigate = useNavigate();
@@ -15,6 +19,7 @@ const UploadFile = () => {
   const [showImage, setShowImage] = useState("");
   const [saveVideo, setSaveVideo] = useState("");
   const [showVideo, setShowVideo] = useState("");
+  const [isError, setIsError] = useState(false);
   const [data, setData] = useState({
     title: "",
     videoName: "",
@@ -28,11 +33,37 @@ const UploadFile = () => {
     // console.log(data)
   };
   const handleImageUpload = (e) => {
+    const MAX_FILE_SIZE = 5120; // 5MB
+
     const uploader = e.target.files[0];
     const reader = new FileReader();
     reader.onload = () => {
       setShowImage(reader.result);
     };
+
+    const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
+    const fileSizeKiloBytes = uploader.size / 1024;
+
+    if (!allowedTypes.includes(uploader?.type)) {
+      setIsError(true);
+      Swal.fire({
+        title: "Failed",
+        text: "Type File is not match",
+        icon: "error",
+      });
+
+      return;
+    }
+    if (fileSizeKiloBytes > MAX_FILE_SIZE) {
+      setIsError(true);
+      Swal.fire({
+        title: "Failed",
+        text: "File size is too large",
+        icon: "error",
+      });
+      return;
+    }
+    setIsError(false);
     reader.readAsDataURL(uploader);
     setSaveImage(e.target.files[0]);
   };
@@ -46,13 +77,22 @@ const UploadFile = () => {
     reader.readAsDataURL(videoFile);
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     try {
       dispatch(addRecipe({ data, saveImage, saveVideo }));
+      Swal.fire({
+        title: "Success",
+        text: "Add Recipe Success",
+        icon: "success",
+      });
       navigate("/profile");
-      return alert("add recipe berhasil");
+      dispatch(getRecipeByUserId());
     } catch (error) {
-      alert(error.data.message);
+      Swal.fire({
+        title: "Failed",
+        text: "Add Recipe Failed",
+        icon: "error",
+      });
     }
   };
   return (
@@ -65,6 +105,8 @@ const UploadFile = () => {
           onChange={handleImageUpload}
           // value={data}
         />
+        {isError}
+
         {showImage && (
           <img
             src={showImage || ""}

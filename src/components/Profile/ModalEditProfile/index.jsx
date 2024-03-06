@@ -6,6 +6,7 @@ import Input from "../../UI/Input";
 import Images from "../../UI/Images";
 import { useDispatch, useSelector } from "react-redux";
 import { editUser } from "../../../redux/actions/userAction";
+import Swal from "sweetalert2";
 
 const ModalEditProfile = () => {
   const dispatch = useDispatch();
@@ -44,10 +45,19 @@ const ModalEditProfile = () => {
 
   const handleSubmit = async () => {
     try {
-      dispatch(editUser({ data, saveImage }));
+      await dispatch(editUser({ data, saveImage }));
+      Swal.fire({
+        title: "Success",
+        text: "Update Photo Profile Success",
+        icon: "success",
+      });
       handleClose();
     } catch (error) {
-      alert(error.data.message);
+      Swal.fire({
+        title: "Failed",
+        text: "Update Photo Profile Failed",
+        icon: "error",
+      });
     }
   };
   return (
@@ -104,7 +114,7 @@ const ModalEditProfile = () => {
             type="submit"
             className="back-primary text-light"
             onClick={handleSubmit}
-            disabled={loading}
+            // disabled={loading}
           >
             {loading ? "loading..." : "Save"}
           </Button>

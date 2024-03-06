@@ -20,6 +20,10 @@ const Images = {
   popular3Image: new URL("../../../assets/img/popular-3.png", import.meta.url)
     .href,
   photoProfile: new URL("../../../assets/img/ayudia.png", import.meta.url).href,
+  profileDefault: new URL(
+    "../../../assets/img/profile-default.png",
+    import.meta.url
+  ).href,
 };
 
 export default Images;

@@ -2,6 +2,7 @@ import userCalls from "../../services/userCalls";
 
 export const register = (data) => async (dispatch) => {
   try {
+    console.log(data);
     dispatch({
       type: "REGISTER_REQUEST",
     });
@@ -40,14 +41,13 @@ export const login = (data) => async (dispatch) => {
 };
 
 export const getUser = () => async (dispatch) => {
-
   try {
     dispatch({
       type: "GET_USER_REQUEST",
     });
     const id = localStorage.getItem("id");
     const response = await userCalls.getUserDB(id);
-    const user = response.data.data
+    const user = response.data.data;
     dispatch({
       type: "GET_USER_SUCCESS",
       payload: user,
@@ -58,27 +58,31 @@ export const getUser = () => async (dispatch) => {
   }
 };
 
-export const editUser = ({data, saveImage}) => async (dispatch) => {
-  try {
-    dispatch({
-      type: "EDIT_USER_REQUEST",
-    });
+export const editUser =
+  ({ data, saveImage }) =>
+  async (dispatch) => {
+    try {
+      dispatch({
+        type: "EDIT_USER_REQUEST",
+      });
 
-    const id = localStorage.getItem("id")
-    const formData = new FormData();
-    formData.append("username", data.username);
-    formData.append("phone", data.phone);
-    formData.append("image", saveImage);
+      const id = localStorage.getItem("id");
+      const formData = new FormData();
+      formData.append("username", data.username);
+      formData.append("phone", data.phone);
+      formData.append("image", saveImage);
 
-    const response = await userCalls.editUserDB(id,formData)
-    const recipe = response.data.data
-    dispatch({
-      type: "EDIT_USER_SUCCESS",
-      payload: recipe
-    })
-  } catch (error) {
-    dispatch({ type: "EDIT_USER_FAILED", payload: error.response.data.message });
-    throw error.response;
-  }
-}
-
+      const response = await userCalls.editUserDB(id, formData);
+      const recipe = response.data.data;
+      dispatch({
+        type: "EDIT_USER_SUCCESS",
+        payload: recipe,
+      });
+    } catch (error) {
+      dispatch({
+        type: "EDIT_USER_FAILED",
+        payload: error.response.data.message,
+      });
+      throw error.response;
+    }
+  };

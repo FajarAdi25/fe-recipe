@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../../redux/actions/userAction";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 // import { useFormInput } from "../../../hooks/useInput";
 
@@ -37,12 +38,18 @@ const RegisterForm = () => {
   const handleSubmit = () => {
     try {
       dispatch(register(form));
-      // {navigate}
+      Swal.fire({
+        title: "Success",
+        text: "Register Success",
+        icon: "success",
+      });
       navigate("/login");
-      return alert("register berhasil");
-      // console.log('data user =', user);
     } catch (error) {
-      alert(error.data.message);
+      Swal.fire({
+        title: "Failed",
+        text: "Register Failed",
+        icon: "error",
+      });
     }
   };
 

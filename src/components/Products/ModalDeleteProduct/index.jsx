@@ -3,8 +3,12 @@ import { Modal } from "react-bootstrap";
 import { Trash } from "react-bootstrap-icons";
 import Button from "../../UI/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteRecipe } from "../../../redux/actions/recipeAction";
+import {
+  deleteRecipe,
+  getRecipeByUserId,
+} from "../../../redux/actions/recipeAction";
 import PropTypes from "prop-types";
+import Swal from "sweetalert2";
 
 const ModalDeleteProduct = ({ recipeId }) => {
   const id = recipeId;
@@ -17,11 +21,21 @@ const ModalDeleteProduct = ({ recipeId }) => {
 
   const handleDelete = async () => {
     try {
-      dispatch(deleteRecipe(id));
+      await dispatch(deleteRecipe(id));
+
+      Swal.fire({
+        title: "Success",
+        text: "Delete Success",
+        icon: "success",
+      });
       handleClose();
-      return alert("Delete berhasil");
+      dispatch(getRecipeByUserId());
     } catch (error) {
-      alert(error.data.message);
+      Swal.fire({
+        title: "Failed",
+        text: "Delete Recipe Failed",
+        icon: "failed",
+      });
     }
   };
   return (
