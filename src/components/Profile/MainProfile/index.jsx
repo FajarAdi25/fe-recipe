@@ -20,7 +20,7 @@ const MainProfile = () => {
         <div className="position-relative">
           <img
             className="picture rounded-circle"
-            src={user?.image === null ? Images.profileDefault : user.image}
+            src={user?.image == "null" ? Images.profileDefault : user.image}
             alt="Profile Picture"
           />
 
