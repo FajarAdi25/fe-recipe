@@ -12,7 +12,7 @@ const SearchPage = () => {
   const [search, setSearch] = useState("");
   const [params, setParams] = useState({
     page: 1,
-    take: 3,
+    limit: 3,
     sort: "",
     search: "",
   });
@@ -31,8 +31,8 @@ const SearchPage = () => {
   );
 
   useEffect(() => {
-    const { page, take, search, sort } = params;
-    dispatch(getAllRecipe({ page, take, search, sort }));
+    const { page, limit, search, sort } = params;
+    dispatch(getAllRecipe({ page, limit, search, sort }));
   }, [dispatch, params]);
 
   const handleRecipeClick = (id) => {

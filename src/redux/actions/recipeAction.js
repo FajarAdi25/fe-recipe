@@ -21,7 +21,7 @@ export const getRecipeByUserId = () => async (dispatch) => {
   }
 };
 export const getAllRecipe =
-  ({ page, take, sort, search }) =>
+  ({ page, limit, sort, search }) =>
   async (dispatch) => {
     try {
       dispatch({
@@ -30,7 +30,7 @@ export const getAllRecipe =
       const response = await recipeCalls.getAllRecipeDB({
         params: {
           page,
-          take,
+          limit,
           sort,
           ...(search ? { search: search } : {}),
         },
@@ -61,9 +61,9 @@ export const addRecipe =
       formData.append("title", data.title);
       formData.append("image", saveImage);
       formData.append("video", saveVideo);
-      formData.append("videoName", data.videoName);
+      formData.append("video_name", data.video_name);
       formData.append("ingredients", data.ingredients);
-      formData.append("userId", userId);
+      formData.append("user_id", userId);
 
       const response = await recipeCalls.addRecipeDB(formData);
       const recipe = response.data.data;

@@ -22,7 +22,7 @@ const UploadFile = () => {
   const [isError, setIsError] = useState(false);
   const [data, setData] = useState({
     title: "",
-    videoName: "",
+    video_name: "",
     ingredients: "",
   });
   const handleChange = (e) => {
@@ -143,10 +143,10 @@ const UploadFile = () => {
         <input
           type="text"
           className="form-control form-control-sm p-3"
-          name="videoName"
+          name="video_name"
           placeholder="Video Name"
           onChange={handleChange}
-          value={data.videoName}
+          value={data.video_name}
         />
       </div>
       <div className="photo mb-3">

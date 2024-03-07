@@ -20,14 +20,14 @@ const ModalEditProduct = ({ recipeData }) => {
   const { loading } = useSelector((state) => state.recipe);
   let [data, setData] = useState({
     title: "",
-    image: saveImage,
     ingredients: "",
+    image: saveImage,
   });
   useEffect(() => {
     setData({
       title: recipeData.title,
-      image: recipeData,
       ingredients: recipeData.ingredients,
+      image: recipeData,
     });
   }, []);
 
