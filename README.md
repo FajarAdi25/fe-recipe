@@ -19,7 +19,7 @@ The Mama Recipe project is built using the following technologies:
 ## Project Repository 📂
 
 The Back End repository for this project can be found on GitHub at the following link:
-[Mama Recipe Backend Repository](https://github.com/FajarAdi25/be-mama-recipe)
+[Mama Recipe Backend Repository](https://github.com/FajarAdi25/be-recipe)
 
 The Mobile App repository for this project can be found on GitHub at the following link:
 [Mama Recipe Mobile App Repository](https://github.com/FajarAdi25/MamaRecipeMobile)
