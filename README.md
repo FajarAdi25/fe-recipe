@@ -22,7 +22,7 @@ The Back End repository for this project can be found on GitHub at the following
 [Mama Recipe Backend Repository](https://github.com/FajarAdi25/be-recipe)
 
 The Mobile App repository for this project can be found on GitHub at the following link:
-[Mama Recipe Mobile App Repository](https://github.com/FajarAdi25/MamaRecipeMobile)
+[Mama Recipe Mobile App Repository](https://github.com/FajarAdi25/recipe-mobile)
 
 
 ## Features ✨
